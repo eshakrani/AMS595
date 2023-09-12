@@ -1,0 +1,173 @@
+% -------------------------------------------------------------------
+%  File name: BaseConverter.m
+%  Author: Eshan Shakrani
+%  Date: 09/08/2023
+% -------------------------------------------------------------------
+                                        
+
+% Converts a user-provided value from base-n to base-m 
+% n and m are integer values also input by the user
+
+% prompt the user for base n until the conditions are satisfied
+while true
+
+    % prompt the user for an integer n
+    n = input('Please enter an integer value [2, 10] for base-n: ');
+    fprintf('\n')
+
+    % check if the input is a number
+    if isa(n, 'double')
+        
+        % check if the input is an integer
+        if round(n) ~= n
+            fprintf('The entered value %f is not an integer.\n', n)
+            fprintf('\n\n')
+            continue
+        end
+
+        % check if the input is within the given bounds
+        if n < 2 || n > 10
+            fprintf('The entered value %d is not within [2, 10].\n', n)
+            fprintf('\n\n')
+            continue
+        end 
+
+        % Correct input - integer, within [2, 10] bounds
+        fprintf('Selected base-n: %d\n\n\n', n)
+        break 
+
+    % if the input is not numeric
+    else
+        fprintf('The entered value %s is not numeric.\n', n)
+        fprintf('\n\n')
+        continue
+    end
+end % end of user input for n
+
+
+% prompt the user for a number in base-n until the conditions are satisfied
+while true
+
+    % prompt the user for a base-n number
+    num = input('Please enter a number in base-n: ', 's');
+    fprintf('\n')
+
+
+    % if any single place in the number contains a character that is not 
+    % numeric
+    % 
+    % OR
+    % 
+    % if any single place in the number contains a value greater than or
+    % equal to n, 
+    % 
+    % then the number cannot be base-n
+    for i = 1:length(num)
+        valid = true;
+
+        % could check these two conditions together since we are limited 
+        % to max. base 10 so all characters should be numeric but they 
+        % are checked separately to keep each case distinct
+
+        if ~(num(i) >= '0' && num(i) <= '9')
+            fprintf('The character %s is not numeric.\n', num(i))
+            fprintf('%s is an invalid input.\n\n\n')
+            valid = false;
+            break
+        end
+
+        if str2num(num(i)) >= n
+            fprintf('%s is greater than the base %d.\n', num(i), n)
+            fprintf('%s is an invalid input.\n\n\n', num)
+            valid = false;
+            break
+        end
+        
+        
+    end
+
+    if ~valid
+        continue
+    end
+
+    % if the program reaches this point, then the input should be valid
+    fprintf('Selected number: %s\n\n\n', num)
+    break
+end
+
+
+
+% prompt the user for base m until the conditions are satisfied
+while true
+
+    % prompt the user for an integer m
+    m = input('Please enter an integer value [2, 10] for base-m: ');
+    fprintf('\n')
+
+    % check if the input is a number
+    if isa(m, 'double')
+        
+        % check if the input is an integer
+        if round(m) ~= m
+            fprintf('The entered value %f is not an integer.\n', m)
+            fprintf('\n\n')
+            continue
+        end
+
+        % check if the input is within the given bounds
+        if m < 2 || m > 10
+            fprintf('The entered value %d is not within [2, 10].\n', m)
+            fprintf('\n\n')
+            continue
+        end 
+
+        % Correct input - integer, within [2, 10] bounds
+        fprintf('Selected base-n: %d\n\n\n', m)
+        break 
+
+    % if the input is not numeric
+    else
+        fprintf('The entered value %s is not numeric.\n', m)
+        fprintf('\n\n')
+        continue
+    end
+end % end of user input for m
+
+
+% first convert the number to base-10
+power = 0;
+sum10 = 0;
+for i = 1:length(num)
+
+    % traverse through number backwards and take each character as a number
+    temp = str2num(num(length(num) - i + 1));
+
+    % get the value for that position
+    sum10 = sum10 + temp * n^power;
+
+    power = power + 1;
+
+end
+
+% if the user selected 10 as base-m, then we already have the result
+if m == 10
+    fprintf('Your ouptut in base %d is %d\n\n', m, sum10)
+
+else
+   % convert the base-10 number to base-m
+
+   % repeatedly divide the base-10 number by m; build the result 
+   % using the remainders from these divisions
+   result = '';
+   while sum10 ~= 0
+       disp(result)
+       rem = mod(sum10, m);
+       fprintf('Remainder: %d\n', rem);
+       result = strcat(num2str(rem), result);
+       fprintf('Result: %s\n', result);
+       sum10 = floor(sum10 / m);
+   end
+
+   fprintf('Your output in base %d is:  %s\n\n', m, result)
+
+end
