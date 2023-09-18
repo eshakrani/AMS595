@@ -41,7 +41,7 @@ function [pi_est, err_abs, err_rel] = MontePi(n)
 
     pi_est = round((count / n) * 4, 6);
 
-    % abs. error = | pi_exact - pi_approx. |
+    % abs. error = | pi_exact - pi_approx. |`
     err_abs = abs(pi - pi_est);
 
     % rel. error = | pi_exact - pi_approx. | / pi_exact

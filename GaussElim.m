@@ -52,7 +52,7 @@ function [x] = GaussElim(A, b)
     % because in a matrix with n rows, only (n - 1) get reduced
     for i = 1 : rows - 1
 
-        disp(C(i, :))
+        %disp(C(i, :))
         
         % for each subsequent row, figure out the multipler to eliminate 
         % the element under the current row's pivot element
@@ -68,7 +68,7 @@ function [x] = GaussElim(A, b)
         end
     end
 
-    disp(C);
+    %disp(C);
 
     % C is the reduced matrix 
     % now use backward substitution to solve for each element in x
