@@ -1,10 +1,12 @@
 function [x] = GaussElim(A, b)
 % GAUSSELIM function
 %   x = GaussElim(A, b)
-%
+%   
+%   INPUTS:
 %   A: matrix of size (n x n) consisting of real numbers 
 %   b: vector of size n consisting of real numbers
 %
+%   OUTPUTS:
 %   x: vector of size n consisting of real numbers
 %   x is the result of Gaussian elimination on A and b
 %   Alternatively, Ax = b
