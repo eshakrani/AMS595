@@ -13,7 +13,7 @@
 %    value of pi on the plot
 
 % close all figures currently open
-close all
+close all  
 
 % values of n to test
 n_vals = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000];
@@ -60,6 +60,8 @@ for ind = 1 : length(n_vals)
     
 end
 
+set(gcf, 'Position', [300, 100, 1300, 1000])
+
 % first plot: Execution time vs. n
 fprintf("Generating Plot 1...\n")
 subplot(3, 1, 1)
@@ -99,6 +101,7 @@ circ_x = 0 : 0.01 : 1;
 circ_y = (1 - (circ_x.^2)).^(1/2);
 plot(circ_x, circ_y, 'Color', 'black', 'LineWidth', 6);
 
+% label the quarter circle with its equation
 text(0, 1.1, '$y = \sqrt{1 - x^2}; x\epsilon[0, 1]$', ...
     'Interpreter', 'latex', 'FontSize', 16, 'Color', 'black', ...
     'FontWeight', 'bold')
@@ -128,13 +131,16 @@ for i = 1 : n
     % less than or equal to 1, then the point is inside the unit circle
     if dist(x1, y1, 0, 0) <= 1
         count = count + 1;
+        % points inside the circle are red
         scatter(x1, y1, 'r', 'filled')
         drawnow;
     else
+        % points outside the circle are blue
         scatter(x1, y1, 'b', 'filled')
         drawnow;
     end
 
+    % keep user updated on current progress
     if mod(i, 10) == 0
         fprintf("Iteration %d/%d...\n", i, n);
     end
@@ -149,14 +155,17 @@ hold('off')
 % approximated value for pi
 pi_est = round((count / n) * 4, 6);
 
-
+% show the approx. pi value on the plot
 pi_text = ['\pi \approx ', num2str(pi_est, 4)];
 text(0.5, 0.5, pi_text, 'Interpreter', 'tex', 'FontSize', 24, ...
     'color', 'black')
 
-fprintf('Pi approximation: %s', pi_text);
-   
+% print approx. pi value to the console
+fprintf('Pi approximation: %f\n', pi_est);
 
+saveas(gcf, 'hw1_plots.png', 'png')
+   
+% helper function to find distance between two points
 function d = dist(x1, y1, x2, y2)
     d = ((x1 - x2)^2 + (y1 - y2)^2)^(1/2);
 end

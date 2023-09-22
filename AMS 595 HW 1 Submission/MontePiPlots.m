@@ -162,6 +162,8 @@ text(0.5, 0.5, pi_text, 'Interpreter', 'tex', 'FontSize', 24, ...
 
 % print approx. pi value to the console
 fprintf('Pi approximation: %f\n', pi_est);
+
+saveas(gcf, 'hw1_plots.png', 'png')
    
 % helper function to find distance between two points
 function d = dist(x1, y1, x2, y2)
