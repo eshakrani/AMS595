@@ -166,6 +166,58 @@ void test_prime_factorize() {
 }
 // ******* Q4c END ************** //
 
+
+// ******* Q5 ************** //
+/** @brief Displays the first n rows of Pascal's triangle
+ *  @param n the number of rows to display from the triangle
+ *  @return Void
+ */
+void pascal_n_rows(int n) {
+    // set up a vector of vectors to represent the n rows of the triangle
+    // the inner vectors will be each row 
+    vector<vector<int>> triangle;
+
+    // starting from row 1, the ith row of the triangle has i elements
+    // since each row starts and ends with 1, 
+    // prefill each row with the i elements - all 1s
+    for (int i = 1; i <= n; i++) {
+        vector<int> row_i;
+        for (int j = 1; j <= i; j++) {
+            row_i.push_back(1);
+        }
+        triangle.push_back(row_i);
+    }
+
+    /* 
+    rows 1 and 2 are composed of only 1s
+    for each row starting from row 3:
+        to get element i, add elements at indices i and (i - 1)
+        from the previous row
+    */
+    vector<int> current_row, prev_row; 
+    for (int i = 2; i < triangle.size(); i++) {
+        current_row = triangle[i];
+        prev_row = triangle[i - 1];
+        for (int j = 1; j < current_row.size() - 1; j++) {
+            current_row[j] = prev_row[j - 1] + prev_row[j];
+        }
+        triangle[i] = current_row;
+    }
+
+    while(!current_row.empty()) {
+        current_row.erase(current_row.begin());
+    }
+    while(!prev_row.empty()) {
+        prev_row.erase(prev_row.begin());
+    }
+
+    for (auto v : triangle) {
+        print_vector(v);
+    }
+}
+
+
+
 int main() {
 
     // ******* Q1 ************** //
@@ -301,6 +353,27 @@ int main() {
     cout << "QUESTION 4c END" << endl;
     // ******* Q4c END ************** //
     
+    cout << endl << endl;
+    system("read -p 'Press Enter to continue to Q5...' ");
+
+    // ******* Q5 ************** //
+    cout << endl;
+    cout << "__________________________________" << endl;
+    cout << "QUESTION 5:" << endl << endl;
+
+    cout << "Display the first n rows of Pascal's Triangle" << endl;
+    cout << "Enter n: ";
+    cin >> n;
+    cout << endl << endl;
+
+    pascal_n_rows(n);
+
+    cout << endl;
+
+    cout << "QUESTION 5 END" << endl;
+    // ******* Q5 END ************** //
+
+
 
 
     return 0;
