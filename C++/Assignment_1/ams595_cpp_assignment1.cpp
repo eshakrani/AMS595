@@ -1,5 +1,6 @@
 // import statements for basic i/o operations and other standard C++ functionality
 #include <iostream>
+#include <vector>
 using namespace std;
 
 
@@ -8,7 +9,7 @@ using namespace std;
  *  @param v the vector to print
  *  @return Void
  */
-void print_vector(vector<int>& v) {
+void print_vector(vector<int> v) {
     // use a for-each loop to iterate 
     // through the vector and print each element
     for (auto i : v) {
@@ -181,10 +182,7 @@ void pascal_n_rows(int n) {
     // since each row starts and ends with 1, 
     // prefill each row with the i elements - all 1s
     for (int i = 1; i <= n; i++) {
-        vector<int> row_i;
-        for (int j = 1; j <= i; j++) {
-            row_i.push_back(1);
-        }
+        vector<int> row_i(i, 1);
         triangle.push_back(row_i);
     }
 
@@ -220,9 +218,11 @@ void pascal_n_rows(int n) {
 
 int main() {
 
+    char line[] = "__________________________________";
+
     // ******* Q1 ************** //
     cout << endl;
-    cout << "__________________________________" << endl;
+    cout << line << line << line << endl;
     cout << "QUESTION 1:" << endl << endl;
 
     /* 
@@ -266,7 +266,24 @@ int main() {
 
     cout << endl;
     cout << "QUESTION 1 END" << endl;
+    cout << line << line << line << endl;
     // ******* Q1 END ************** //
+
+    cout << endl << endl;
+    system("read -p 'Press Enter to continue to Q2...' ");
+
+    // ******* Q2 ************** //
+    cout << endl;
+    cout << line << line << line << endl;
+    cout << "QUESTION 2:" << endl << endl;
+
+    cout << "(Wrote the print_vector() function to print the contents of a vector object)" << endl;
+
+    cout << endl;
+
+    cout << "QUESTION 2 END" << endl;
+    cout << line << line << line << endl;
+    // ******* Q2 END ************** //
 
     cout << endl << endl;
     system("read -p 'Press Enter to continue to Q3...' ");
@@ -274,7 +291,7 @@ int main() {
 
     // ******* Q3 ************** //
     cout << endl;
-    cout << "__________________________________" << endl;
+    cout << line << line << line << endl;
     cout << "QUESTION 3:" << endl << endl;
     
     // print all elements of the Fibonacci sequence less than 4,000,000
@@ -306,6 +323,7 @@ int main() {
     cout << endl;
 
     cout << "QUESTION 3 END" << endl;
+    cout << line << line << line << endl;
     // ******* Q3 END ************** //
 
     cout << endl << endl;
@@ -313,7 +331,7 @@ int main() {
 
     // ******* Q4a ************** //
     cout << endl;
-    cout << "__________________________________" << endl;
+    cout << line << line << line << endl;
     cout << "QUESTION 4a:" << endl << endl;
 
     test_isprime();
@@ -321,6 +339,7 @@ int main() {
     cout << endl;
 
     cout << "QUESTION 4a END" << endl;
+    cout << line << line << line << endl;
     // ******* Q4a END ************** //
 
     cout << endl << endl;
@@ -328,7 +347,7 @@ int main() {
     
     // ******* Q4b ************** //
     cout << endl;
-    cout << "__________________________________" << endl;
+    cout << line << line << line << endl;
     cout << "QUESTION 4b:" << endl << endl;
 
     test_factorize();
@@ -336,6 +355,7 @@ int main() {
     cout << endl;
 
     cout << "QUESTION 4b END" << endl;
+    cout << line << line << line << endl;
     // ******* Q4b END ************** //
 
     cout << endl << endl;
@@ -343,7 +363,7 @@ int main() {
     
     // ******* Q4c ************** //
     cout << endl;
-    cout << "__________________________________" << endl;
+    cout << line << line << line << endl;
     cout << "QUESTION 4c:" << endl << endl;
 
     test_prime_factorize();
@@ -351,6 +371,7 @@ int main() {
     cout << endl;
 
     cout << "QUESTION 4c END" << endl;
+    cout << line << line << line << endl;
     // ******* Q4c END ************** //
     
     cout << endl << endl;
@@ -358,7 +379,7 @@ int main() {
 
     // ******* Q5 ************** //
     cout << endl;
-    cout << "__________________________________" << endl;
+    cout << line << line << line << endl;
     cout << "QUESTION 5:" << endl << endl;
 
     cout << "Display the first n rows of Pascal's Triangle" << endl;
@@ -371,6 +392,7 @@ int main() {
     cout << endl;
 
     cout << "QUESTION 5 END" << endl;
+    cout << line << line << line << endl;
     // ******* Q5 END ************** //
 
 
